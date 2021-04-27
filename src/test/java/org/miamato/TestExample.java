@@ -29,7 +29,7 @@ public class TestExample extends BaseTest {
         pet.tags = new ArrayList<>();
         pet.tags.add(tag);
 
-        keywordManager.petApi.postPet(pet);
+        keywordManager.petApi().postPet(pet);
 
     }
 
@@ -44,11 +44,11 @@ public class TestExample extends BaseTest {
             .withTag(new Tag(20, "Snoring"))
             .withPhotoUrl("imagine.this.is.url");
 
-        keywordManager.petApi.postPet(pet)
-            .petApi.getPet(pet.id)
-            .petApi.getPetByStatus(pet.status)
-            .petApi.postPetUpdateNameAndStatus(10, "Jango", "Free")
-            .petApi.getPetByStatus("Free");
+        keywordManager.petApi().postPet(pet)
+            .petApi().getPet(pet.id)
+            .petApi().getPetByStatus(pet.status)
+            .petApi().postPetUpdateNameAndStatus(10, "Jango", "Free")
+            .petApi().getPetByStatus("Free");
 
     }
 

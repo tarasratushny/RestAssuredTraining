@@ -17,6 +17,7 @@ public abstract class BaseTest {
             .setAccept("application/json")
             .setContentType("application/json")
             .build();
+
         keywordManager = new KeywordManager();
     }
 

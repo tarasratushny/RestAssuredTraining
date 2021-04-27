@@ -2,11 +2,11 @@ package org.miamato.keywords;
 
 public class KeywordManager {
 
-    public PetApi petApi;
+    private PetApi petApi;
 
-    public KeywordManager petApi(){
+    public PetApi petApi(){
         if(this.petApi == null)
             petApi = new PetApi(this);
-        return this;
+        return petApi;
     }
 }

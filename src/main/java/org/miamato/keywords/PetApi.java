@@ -13,7 +13,7 @@ public class PetApi {
 
     private static final Logger log = LogManager.getLogger(PetApi.class.getSimpleName());
 
-    private final KeywordManager keywordManager;
+    private KeywordManager keywordManager;
 
     private static final String CREATE_PET_PATH = "/pet";
     private static final String GET_PET_PATH = "/pet/{petId}";
