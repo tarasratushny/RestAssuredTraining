@@ -13,12 +13,18 @@ public class PetApi {
 
     private static final Logger log = LogManager.getLogger(PetApi.class.getSimpleName());
 
+    private final KeywordManager keywordManager;
+
     private static final String CREATE_PET_PATH = "/pet";
     private static final String GET_PET_PATH = "/pet/{petId}";
     private static final String GET_PET_BY_STATUS_PATH = "/pet/findByStatus";
     private static final String UPDATE_PET_NAME_AND_STATUS_PATH = "/pet/{petId}";
 
-    public static void postPet(Pet pet){
+    public PetApi(KeywordManager keywordManager) {
+        this.keywordManager = keywordManager;
+    }
+
+    public KeywordManager postPet(Pet pet){
 
         log.info("POST PET -- DATA -- Creating pet with data: \n " + PrintUtils.prettyPrintPojo(pet) + "\n");
 
@@ -30,9 +36,10 @@ public class PetApi {
 
         response.then().statusCode(200);
 
+        return keywordManager;
     }
 
-    public static void getPet(int id) {
+    public KeywordManager getPet(int id) {
 
         log.info("GET PET -- DATA -- Getting information about pet with id: " + id + "\n");
 
@@ -44,9 +51,11 @@ public class PetApi {
         log.info("GET PET -- RESPONSE CODE: " + response.statusCode() + "\n");
 
         response.then().statusCode(200);
+
+        return keywordManager;
     }
 
-    public static void getPetByStatus(String status){
+    public KeywordManager getPetByStatus(String status){
 
         log.info("GET PETS -- DATA -- Getting pets list with status: " + status + "\n");
 
@@ -58,9 +67,10 @@ public class PetApi {
 
         response.then().statusCode(200);
 
+        return keywordManager;
     }
 
-    public static void postPetUpdateNameAndStatus(int id, String newName, String newStatus) {
+    public KeywordManager postPetUpdateNameAndStatus(int id, String newName, String newStatus) {
 
         log.info("POST PET -- DATA -- Updating pet with id: " + id + " New name: " + newName + " New Status: " + newStatus  + "\n");
 
@@ -78,6 +88,7 @@ public class PetApi {
 
         response.then().statusCode(200);
 
+        return keywordManager;
     }
 
 }

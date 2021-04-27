@@ -1,12 +1,8 @@
 package org.miamato;
 
-import static org.miamato.keywords.PetApi.getPet;
-import static org.miamato.keywords.PetApi.getPetByStatus;
-import static org.miamato.keywords.PetApi.postPet;
-import static org.miamato.keywords.PetApi.postPetUpdateNameAndStatus;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import org.miamato.keywords.KeywordManager;
 import org.miamato.models.pet.Category;
 import org.miamato.models.pet.Pet;
 import org.miamato.models.pet.Tag;
@@ -32,7 +28,8 @@ public class TestExample extends BaseTest {
         pet.status="dead";
         pet.tags = new ArrayList<>();
         pet.tags.add(tag);
-        postPet(pet);
+
+        keywordManager.petApi.postPet(pet);
 
     }
 
@@ -47,15 +44,12 @@ public class TestExample extends BaseTest {
             .withTag(new Tag(20, "Snoring"))
             .withPhotoUrl("imagine.this.is.url");
 
-        postPet(pet);
+        keywordManager.petApi.postPet(pet)
+            .petApi.getPet(pet.id)
+            .petApi.getPetByStatus(pet.status)
+            .petApi.postPetUpdateNameAndStatus(10, "Jango", "Free")
+            .petApi.getPetByStatus("Free");
 
-        getPet(pet.id);
-
-        getPetByStatus(pet.status);
-
-        postPetUpdateNameAndStatus(10, "Jango", "Free");
-
-        getPetByStatus("Free");
     }
 
 }

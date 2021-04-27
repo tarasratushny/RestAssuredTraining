@@ -2,9 +2,12 @@ package org.miamato;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import org.miamato.keywords.KeywordManager;
 import org.testng.annotations.BeforeClass;
 
 public abstract class BaseTest {
+
+    protected KeywordManager keywordManager;
 
     @BeforeClass
     public void setup(){
@@ -14,7 +17,7 @@ public abstract class BaseTest {
             .setAccept("application/json")
             .setContentType("application/json")
             .build();
-
+        keywordManager = new KeywordManager();
     }
 
 }
