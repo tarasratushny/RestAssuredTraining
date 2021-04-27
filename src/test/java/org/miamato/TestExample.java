@@ -2,8 +2,9 @@ package org.miamato;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.miamato.context.Context;
-import org.miamato.keywords.KeywordManager;
 import org.miamato.models.pet.Category;
 import org.miamato.models.pet.Pet;
 import org.miamato.models.pet.Tag;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
 
 public class TestExample extends BaseTest {
 
-
+    private static final Logger log = LogManager.getLogger(TestExample.class.getSimpleName());
 
     @Test
     public void createPet(){
@@ -58,6 +59,7 @@ public class TestExample extends BaseTest {
 
     private static void checkPetName(String expectedName){
 
+        log.info("Checking first pet name in get pets by status call \n");
         Assert.assertEquals(Context.getInstance().getResponse("GetPetsByStatus").then().extract().path("[0].name"), expectedName);
 
     }
