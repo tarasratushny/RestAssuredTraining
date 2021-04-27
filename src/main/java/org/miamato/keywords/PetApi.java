@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.miamato.context.Context;
 import org.miamato.models.pet.Pet;
 import org.miamato.utils.PrintUtils;
 
@@ -34,6 +35,8 @@ public class PetApi {
         log.info("POST PET -- RESPONSE -- Body received: \n" + response.asPrettyString() + "\n");
         log.info("POST PET -- RESPONSE CODE: " + response.statusCode() + "\n");
 
+        Context.getInstance().addResponse("CreatePet", response);
+
         response.then().statusCode(200);
 
         return keywordManager;
@@ -50,12 +53,14 @@ public class PetApi {
         log.info("GET PET -- RESPONSE -- Body received: \n" + response.asPrettyString() + "\n");
         log.info("GET PET -- RESPONSE CODE: " + response.statusCode() + "\n");
 
+        Context.getInstance().addResponse("GetPetById", response);
+
         response.then().statusCode(200);
 
         return keywordManager;
     }
 
-    public KeywordManager getPetByStatus(String status){
+    public KeywordManager getPetsByStatus(String status){
 
         log.info("GET PETS -- DATA -- Getting pets list with status: " + status + "\n");
 
@@ -64,6 +69,8 @@ public class PetApi {
 
         log.info("GET PETS -- RESPONSE -- Body received: \n" + response.asPrettyString() + "\n");
         log.info("GET PETS -- RESPONSE CODE: " + response.statusCode() + "\n");
+
+        Context.getInstance().addResponse("GetPetsByStatus", response);
 
         response.then().statusCode(200);
 
@@ -85,6 +92,8 @@ public class PetApi {
 
         log.info("POST PET -- RESPONSE -- Body received: \n" + response.asPrettyString() + "\n");
         log.info("POST PET -- RESPONSE CODE: " + response.statusCode() + "\n");
+
+        Context.getInstance().addResponse("UpdatePetNameAndStatus", response);
 
         response.then().statusCode(200);
 

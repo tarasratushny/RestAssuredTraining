@@ -2,10 +2,12 @@ package org.miamato;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import org.miamato.context.Context;
 import org.miamato.keywords.KeywordManager;
 import org.miamato.models.pet.Category;
 import org.miamato.models.pet.Pet;
 import org.miamato.models.pet.Tag;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestExample extends BaseTest {
@@ -46,9 +48,17 @@ public class TestExample extends BaseTest {
 
         keywordManager.petApi().postPet(pet)
             .petApi().getPet(pet.id)
-            .petApi().getPetByStatus(pet.status)
+            .petApi().getPetsByStatus(pet.status)
             .petApi().postPetUpdateNameAndStatus(10, "Jango", "Free")
-            .petApi().getPetByStatus("Free");
+            .petApi().getPetsByStatus("Free");
+
+        checkPetName("Aramis");
+
+    }
+
+    private static void checkPetName(String expectedName){
+
+        Assert.assertEquals(Context.getInstance().getResponse("GetPetsByStatus").then().extract().path("[0].name"), expectedName);
 
     }
 
