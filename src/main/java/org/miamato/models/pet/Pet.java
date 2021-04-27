@@ -21,18 +21,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Pet implements Serializable {
 
     @JsonProperty("id")
-    public Integer id;
+    private Integer id;
     @JsonProperty("category")
-    public Category category;
+    private Category category;
     @JsonProperty("name")
-    public String name;
+    private String name;
     @JsonProperty("photoUrls")
-    public List<String> photoUrls = null;
+    private List<String> photoUrls = null;
     @JsonProperty("tags")
-    public List<Tag> tags = null;
+    private List<Tag> tags = null;
     @JsonProperty("status")
-    public String status;
-    private final static long serialVersionUID = 6964323899235781034L;
+    private String status;
+    private final static long serialVersionUID = 2273273525007178764L;
 
     /**
      * No args constructor for use in serialization
@@ -54,9 +54,29 @@ public class Pet implements Serializable {
         this.status = status;
     }
 
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
+    }
+
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Pet withId(Integer id) {
         this.id = id;
         return this;
+    }
+
+    @JsonProperty("category")
+    public Category getCategory() {
+        return category;
+    }
+
+    @JsonProperty("category")
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Pet withCategory(Category category) {
@@ -64,9 +84,29 @@ public class Pet implements Serializable {
         return this;
     }
 
+    @JsonProperty("name")
+    public String getName() {
+        return name;
+    }
+
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Pet withName(String name) {
         this.name = name;
         return this;
+    }
+
+    @JsonProperty("photoUrls")
+    public List<String> getPhotoUrls() {
+        return photoUrls;
+    }
+
+    @JsonProperty("photoUrls")
+    public void setPhotoUrls(List<String> photoUrls) {
+        this.photoUrls = photoUrls;
     }
 
     public Pet withPhotoUrls(List<String> photoUrls) {
@@ -74,11 +114,22 @@ public class Pet implements Serializable {
         return this;
     }
 
-    public Pet withPhotoUrl(String photoUrl){
-        if(photoUrls == null)
+    public Pet withPhotoUrl(String photoUrl) {
+        if (photoUrls == null) {
             photoUrls = new ArrayList<>();
+        }
         photoUrls.add(photoUrl);
         return this;
+    }
+
+    @JsonProperty("tags")
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    @JsonProperty("tags")
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     public Pet withTags(List<Tag> tags) {
@@ -86,11 +137,22 @@ public class Pet implements Serializable {
         return this;
     }
 
-    public Pet withTag(Tag tag){
-        if(tags == null)
+    public Pet withTag(Tag tag) {
+        if (tags == null) {
             tags = new ArrayList<>();
+        }
         this.tags.add(tag);
         return this;
+    }
+
+    @JsonProperty("status")
+    public String getStatus() {
+        return status;
+    }
+
+    @JsonProperty("status")
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Pet withStatus(String status) {

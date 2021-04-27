@@ -1,7 +1,6 @@
 package org.miamato;
 
-import java.util.ArrayList;
-import java.util.Collections;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.miamato.context.Context;
@@ -16,28 +15,7 @@ public class TestExample extends BaseTest {
     private static final Logger log = LogManager.getLogger(TestExample.class.getSimpleName());
 
     @Test
-    public void createPet(){
-        Tag tag = new Tag();
-        tag.id=0;
-        tag.name="ForSale";
-
-        Pet pet = new Pet();
-        pet.id=10;
-        pet.category = new Category();
-        pet.category.id=123;
-        pet.category.name="Cats";
-        pet.name="Kitsune";
-        pet.photoUrls= Collections.singletonList("someUrl");
-        pet.status="dead";
-        pet.tags = new ArrayList<>();
-        pet.tags.add(tag);
-
-        keywordManager.petApi().postPet(pet);
-
-    }
-
-    @Test
-    public void createPetWithBuilder(){
+    public void createPetWithBuilder() {
 
         Pet pet = new Pet()
             .withId(10)
@@ -48,8 +26,8 @@ public class TestExample extends BaseTest {
             .withPhotoUrl("imagine.this.is.url");
 
         keywordManager.petApi().postPet(pet)
-            .petApi().getPet(pet.id)
-            .petApi().getPetsByStatus(pet.status)
+            .petApi().getPet(pet.getId())
+            .petApi().getPetsByStatus(pet.getStatus())
             .petApi().postPetUpdateNameAndStatus(10, "Jango", "Free")
             .petApi().getPetsByStatus("Free");
 
@@ -57,10 +35,12 @@ public class TestExample extends BaseTest {
 
     }
 
-    private static void checkPetName(String expectedName){
+    private static void checkPetName(String expectedName) {
 
         log.info("Checking first pet name in get pets by status call \n");
-        Assert.assertEquals(Context.getInstance().getResponse("GetPetsByStatus").then().extract().path("[0].name"), expectedName);
+        Assert.assertEquals(
+            Context.getInstance().getResponse("GetPetsByStatus").then().extract().path("[0].name"),
+            expectedName);
 
     }
 

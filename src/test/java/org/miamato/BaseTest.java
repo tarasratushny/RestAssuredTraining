@@ -10,7 +10,7 @@ public abstract class BaseTest {
     protected KeywordManager keywordManager;
 
     @BeforeClass
-    public void setup(){
+    public void setup() {
 
         RestAssured.requestSpecification = new RequestSpecBuilder()
             .setBaseUri("https://petstore.swagger.io/v2/")

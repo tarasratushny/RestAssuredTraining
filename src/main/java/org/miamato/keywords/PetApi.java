@@ -13,9 +13,7 @@ import org.miamato.utils.PrintUtils;
 public class PetApi {
 
     private static final Logger log = LogManager.getLogger(PetApi.class.getSimpleName());
-
     private KeywordManager keywordManager;
-
     private static final String CREATE_PET_PATH = "/pet";
     private static final String GET_PET_PATH = "/pet/{petId}";
     private static final String GET_PET_BY_STATUS_PATH = "/pet/findByStatus";
@@ -25,9 +23,10 @@ public class PetApi {
         this.keywordManager = keywordManager;
     }
 
-    public KeywordManager postPet(Pet pet){
+    public KeywordManager postPet(Pet pet) {
 
-        log.info("POST PET -- DATA -- Creating pet with data: \n " + PrintUtils.prettyPrintPojo(pet) + "\n");
+        log.info("POST PET -- DATA -- Creating pet with data: \n " + PrintUtils.prettyPrintPojo(pet)
+            + "\n");
 
         Response response = given().body(pet)
             .when().post(CREATE_PET_PATH);
@@ -46,7 +45,6 @@ public class PetApi {
 
         log.info("GET PET -- DATA -- Getting information about pet with id: " + id + "\n");
 
-
         Response response = given().pathParam("petId", id)
             .when().get(GET_PET_PATH);
 
@@ -60,7 +58,7 @@ public class PetApi {
         return keywordManager;
     }
 
-    public KeywordManager getPetsByStatus(String status){
+    public KeywordManager getPetsByStatus(String status) {
 
         log.info("GET PETS -- DATA -- Getting pets list with status: " + status + "\n");
 
@@ -79,13 +77,14 @@ public class PetApi {
 
     public KeywordManager postPetUpdateNameAndStatus(int id, String newName, String newStatus) {
 
-        log.info("POST PET -- DATA -- Updating pet with id: " + id + " New name: " + newName + " New Status: " + newStatus  + "\n");
+        log.info("POST PET -- DATA -- Updating pet with id: " + id + " New name: " + newName
+            + " New Status: " + newStatus + "\n");
 
         HashMap<String, String> formParams = new HashMap<>();
         formParams.put("name", newName);
-        formParams.put("status", newStatus );
+        formParams.put("status", newStatus);
 
-        Response response = given().formParams( formParams )
+        Response response = given().formParams(formParams)
             .contentType("application/x-www-form-urlencoded")
             .pathParam("petId", id)
             .when().post(UPDATE_PET_NAME_AND_STATUS_PATH);

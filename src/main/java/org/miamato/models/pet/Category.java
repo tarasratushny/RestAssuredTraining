@@ -1,10 +1,10 @@
 package org.miamato.models.pet;
 
+import java.io.Serializable;
+import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import java.io.Serializable;
-import javax.annotation.processing.Generated;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -15,10 +15,10 @@ import javax.annotation.processing.Generated;
 public class Category implements Serializable {
 
     @JsonProperty("id")
-    public Integer id;
+    private Integer id;
     @JsonProperty("name")
-    public String name;
-    private final static long serialVersionUID = 4791422702896383764L;
+    private String name;
+    private final static long serialVersionUID = 1911404362475867791L;
 
     /**
      * No args constructor for use in serialization
@@ -35,9 +35,29 @@ public class Category implements Serializable {
         this.name = name;
     }
 
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
+    }
+
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Category withId(Integer id) {
         this.id = id;
         return this;
+    }
+
+    @JsonProperty("name")
+    public String getName() {
+        return name;
+    }
+
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Category withName(String name) {
