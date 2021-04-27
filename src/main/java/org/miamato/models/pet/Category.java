@@ -35,6 +35,16 @@ public class Category implements Serializable {
         this.name = name;
     }
 
+    public Category withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Category withName(String name) {
+        this.name = name;
+        return this;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

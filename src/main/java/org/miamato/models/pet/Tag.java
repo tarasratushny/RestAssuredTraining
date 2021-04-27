@@ -35,6 +35,16 @@ public class Tag implements Serializable {
         this.name = name;
     }
 
+    public Tag withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Tag withName(String name) {
+        this.name = name;
+        return this;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

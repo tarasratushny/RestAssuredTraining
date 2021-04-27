@@ -1,6 +1,7 @@
 package org.miamato.models.pet;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -51,6 +52,50 @@ public class Pet implements Serializable {
         this.photoUrls = photoUrls;
         this.tags = tags;
         this.status = status;
+    }
+
+    public Pet withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Pet withCategory(Category category) {
+        this.category = category;
+        return this;
+    }
+
+    public Pet withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Pet withPhotoUrls(List<String> photoUrls) {
+        this.photoUrls = photoUrls;
+        return this;
+    }
+
+    public Pet withPhotoUrl(String photoUrl){
+        if(photoUrls == null)
+            photoUrls = new ArrayList<>();
+        photoUrls.add(photoUrl);
+        return this;
+    }
+
+    public Pet withTags(List<Tag> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    public Pet withTag(Tag tag){
+        if(tags == null)
+            tags = new ArrayList<>();
+        this.tags.add(tag);
+        return this;
+    }
+
+    public Pet withStatus(String status) {
+        this.status = status;
+        return this;
     }
 
     @Override
