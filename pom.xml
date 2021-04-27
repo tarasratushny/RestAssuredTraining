@@ -6,7 +6,7 @@
 
   <groupId>org.miamato</groupId>
   <artifactId>RestAssuredTraining</artifactId>
-  <version>1.0</version>
+  <version>1.0.1</version>
 
   <properties>
     <rest.assured.version>4.3.3</rest.assured.version>
