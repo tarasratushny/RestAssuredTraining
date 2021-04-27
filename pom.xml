@@ -6,7 +6,7 @@
 
   <groupId>org.miamato</groupId>
   <artifactId>RestAssuredTraining</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.5</version>
 
   <properties>
     <rest.assured.version>4.3.3</rest.assured.version>
@@ -14,6 +14,12 @@
     <jackson.version>2.12.3</jackson.version>
     <testng.version>7.4.0</testng.version>
     <log4j.version>2.14.1</log4j.version>
+
+    <version.aspectj>1.9.6</version.aspectj>
+    <version.allure>2.13.8</version.allure>
+    <version.allure.maven>2.8</version.allure.maven>
+    <version.allure.reports>2.8.0</version.allure.reports>
+    <version.surefire.plugin>3.0.0-M5</version.surefire.plugin>
 
     <maven.compiler.source>15</maven.compiler.source>
     <maven.compiler.target>15</maven.compiler.target>
@@ -68,6 +74,13 @@
       <artifactId>log4j-core</artifactId>
       <version>${log4j.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>${version.allure}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -82,5 +95,43 @@
         <directory>src/test/resources</directory>
       </testResource>
     </testResources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${version.surefire.plugin}</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>${basedir}/TestNG.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${version.aspectj}/aspectjweaver-${version.aspectj}.jar"
+          </argLine>
+          <systemPropertyVariables>
+            <allure.results.directory>${basedir}/target/allure-results</allure.results.directory>
+          </systemPropertyVariables>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${version.aspectj}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>${version.allure.maven}</version>
+        <configuration>
+          <reportVersion>${version.allure.reports}</reportVersion>
+          <allureDownloadUrl>https://github.com/allure-framework/allure2/releases/download/${version.allure.reports}/allure-${version.allure.reports}.zip</allureDownloadUrl>
+          <propertiesFilePath>${basedir}/src/main/resources/allure.properties</propertiesFilePath>
+          <reportDirectory>${basedir}/target/allure-report</reportDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>

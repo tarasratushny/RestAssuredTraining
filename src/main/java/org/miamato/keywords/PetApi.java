@@ -2,6 +2,7 @@ package org.miamato.keywords;
 
 import static io.restassured.RestAssured.given;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +24,7 @@ public class PetApi {
         this.keywordManager = keywordManager;
     }
 
+    @Step
     public KeywordManager postPet(Pet pet) {
 
         log.info("POST PET -- DATA -- Creating pet with data: \n " + PrintUtils.prettyPrintPojo(pet)
@@ -40,7 +42,7 @@ public class PetApi {
 
         return keywordManager;
     }
-
+    @Step
     public KeywordManager getPet(int id) {
 
         log.info("GET PET -- DATA -- Getting information about pet with id: " + id + "\n");
@@ -57,7 +59,7 @@ public class PetApi {
 
         return keywordManager;
     }
-
+    @Step
     public KeywordManager getPetsByStatus(String status) {
 
         log.info("GET PETS -- DATA -- Getting pets list with status: " + status + "\n");
@@ -74,7 +76,7 @@ public class PetApi {
 
         return keywordManager;
     }
-
+    @Step
     public KeywordManager postPetUpdateNameAndStatus(int id, String newName, String newStatus) {
 
         log.info("POST PET -- DATA -- Updating pet with id: " + id + " New name: " + newName

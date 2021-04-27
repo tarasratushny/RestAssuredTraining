@@ -1,5 +1,6 @@
 package org.miamato;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.miamato.context.Context;
@@ -30,7 +31,7 @@ public class BuyPet extends BaseTest {
         };
     }
 
-    
+
 
     @Test(dataProvider = "pets")
     public void createOrderForPet(Pet pet){
@@ -42,7 +43,7 @@ public class BuyPet extends BaseTest {
     }
 
 
-
+    @Step
     private void checkPostOrderResponse(Pet pet, int quantity){
         log.info("Checking response for POST order call \n");
         Order expectedResult = new Order()

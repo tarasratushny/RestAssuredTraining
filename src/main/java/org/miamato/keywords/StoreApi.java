@@ -2,10 +2,10 @@ package org.miamato.keywords;
 
 import static io.restassured.RestAssured.given;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.TimeZone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.miamato.context.Context;
@@ -22,7 +22,7 @@ public class StoreApi {
     public StoreApi(KeywordManager keywordManager) {
         this.keywordManager = keywordManager;
     }
-
+    @Step
     public KeywordManager postOrder(int petId, int quantity) {
 
         log.info(
