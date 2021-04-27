@@ -1,27 +1,25 @@
 package org.miamato;
 
-import static io.restassured.RestAssured.*;
 import static org.miamato.keywords.PetApi.postPet;
 
-import io.restassured.response.Response;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import org.miamato.models.pet.Category;
 import org.miamato.models.pet.Pet;
+import org.miamato.models.pet.Tag;
 import org.testng.annotations.Test;
 
 public class TestExample extends BaseTest {
 
-    @Test
-    public void tryRestAssured(){
 
-        Response response = when().get("https://petstore.swagger.io/v2/pet/2");
-        response.prettyPrint();
-        response.then().statusCode(200);
-
-    }
 
     @Test
     public void tryHard(){
+        Tag tag = new Tag();
+        tag.id=0;
+        tag.name="ForSale";
+
         Pet pet = new Pet();
         pet.id=10;
         pet.category = new Category();
@@ -30,7 +28,11 @@ public class TestExample extends BaseTest {
         pet.name="Kitsune";
         pet.photoUrls= Collections.singletonList("someUrl");
         pet.status="dead";
+        pet.tags = new ArrayList<>();
+        pet.tags.add(tag);
+
         postPet(pet);
+
     }
 
 }

@@ -15,6 +15,7 @@ public class PetApi {
         response.prettyPrint();
 
         response.then().statusCode(200);
+
     }
 
 }
